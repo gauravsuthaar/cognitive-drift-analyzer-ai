@@ -98,23 +98,9 @@ html, body, [class*="css"] {
 import os
 import numpy as np
 
-# Original + Safe Fix
-if os.path.exists("/Users/gauravsuthar/Pictures/Codes/Cognitive Drift Analyzer AI/data/drift_data.csv"):
-    df = pd.read_csv("/Users/gauravsuthar/Pictures/Codes/Cognitive Drift Analyzer AI/data/drift_data.csv")
-    st.success("✅ CSV Loaded Successfully!")
-else:
-    st.warning("⚠️ CSV file not found. Using Demo Data.")
-    df = pd.DataFrame({
-        'response_latency': np.random.randint(20, 85, 150),
-        'task_decay': np.random.randint(20, 85, 150),
-        'focus_fragmentation': np.random.randint(10, 75, 150),
-        'late_night_activity': np.random.randint(20, 95, 150),
-        'goal_failure': np.random.randint(0, 20, 150),
-        'withdrawal': np.random.randint(20, 85, 150),
-        'consistency': np.random.randint(20, 85, 150),
-        'cognitive_drift': np.random.choice([0, 1], 150)
-    })
+csv_path = os.path.join(os.path.dirname(__file__), "drift_data.csv")
 
+df = pd.read_csv(csv_path)
 X = df.drop("cognitive_drift", axis=1)
 y = df["cognitive_drift"]
 
