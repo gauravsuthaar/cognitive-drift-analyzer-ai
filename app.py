@@ -6,9 +6,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 import datetime
 
-# =========================================================
-# PAGE CONFIG
-# =========================================================
 st.set_page_config(
     page_title="Cognitive Drift Analyzer",
     page_icon="🧠",
@@ -16,9 +13,6 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# =========================================================
-# SUPER PREMIUM CSS (Enhanced with new animations)
-# =========================================================
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
@@ -37,7 +31,6 @@ html, body, [class*="css"] {
 
 .block-container { padding-top: 2.5rem; padding-left: 3.5rem; padding-right: 3.5rem; }
 
-#MainMenu, footer, header { visibility: hidden; }
 
 /* Premium Sidebar */
 [data-testid="stSidebar"] {
@@ -81,7 +74,7 @@ html, body, [class*="css"] {
 .metric-value {
     font-size: 58px;
     font-weight: 700;
-    background: linear-gradient(90deg, #ffffff, #80b8ff);
+    background: linear-gradient(90deg,
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -92,9 +85,6 @@ html, body, [class*="css"] {
 </style>
 """, unsafe_allow_html=True)
 
-# =========================================================
-# DATA & MODEL 
-# =========================================================
 import os
 import numpy as np
 
@@ -108,9 +98,6 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 model = LogisticRegression()
 model.fit(X_train, y_train)
 
-# =========================================================
-# SIDEBAR
-# =========================================================
 st.sidebar.markdown("""
 <div style="font-size:32px; font-weight:700; margin-bottom:8px; letter-spacing:-1px;">Neural Signal Engine</div>
 <div style="font-size:14.5px; color:rgba(255,255,255,0.7);">Real-time cognitive drift monitoring</div>
@@ -134,7 +121,6 @@ def signal_block(title, desc, minv, maxv, default, key):
         st.sidebar.markdown('<div style="background:rgba(100,200,140,0.15); color:#64C48C; padding:6px 16px; border-radius:999px; font-size:13px; display:inline-block; margin:8px 0;">STABLE</div>', unsafe_allow_html=True)
     return value
 
-# Inputs (Unchanged)
 response_latency = signal_block("Response Latency Variance", "Measures instability in cognitive responsiveness patterns.", 0, 100, 32, "latency")
 task_decay = signal_block("Task Completion Decay", "Tracks decline in sustained execution consistency.", 0, 100, 31, "task")
 focus_fragmentation = signal_block("Focus Fragmentation", "Tracks excessive attention switching and instability.", 0, 100, 19, "focus")
@@ -143,9 +129,6 @@ goal_failure = signal_block("Micro Goal Failure Streak", "Measures repeated brea
 withdrawal = signal_block("Interaction Withdrawal", "Measures reduced engagement and behavioral distancing.", 0, 100, 33, "withdrawal")
 consistency = signal_block("Consistency Deviation", "Measures deviation from stable baseline behavioral patterns.", 0, 100, 36, "consistency")
 
-# =========================================================
-# PREDICTION & CLASSIFICATION (Unchanged)
-# =========================================================
 user_data = [[response_latency, task_decay, focus_fragmentation, late_night_activity, goal_failure, withdrawal, consistency]]
 drift_score = model.predict_proba(user_data)[0][1] * 100
 stability_score = 100 - drift_score
@@ -160,9 +143,6 @@ else:
     classification = "Operational Stability Maintained"
     col = "#4DFFB5"
 
-# =========================================================
-# HERO
-# =========================================================
 st.markdown("""
 <div style="font-size:15px; letter-spacing:2px; opacity:0.6; margin-bottom:10px;">NEURO-INTELLIGENCE PLATFORM</div>
 <div style="font-size:82px; font-weight:700; line-height:1; letter-spacing:-4px; background:linear-gradient(90deg,#fff,#a0c0ff); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">
@@ -176,10 +156,9 @@ AI-powered behavioral intelligence system detecting silent cognitive degradation
 </div>
 """, unsafe_allow_html=True)
 
-# Creator
 st.markdown("""
 <div style="display:flex; align-items:center; gap:18px; margin:30px 0 40px 0;">
-    <img src="https://avatars.githubusercontent.com/u/583231?v=4" style="width:68px; height:68px; border-radius:50%; border:2px solid #8ab4ff;">
+    <img src="https://avatars.githubusercontent.com/u/583231?v=4" style="width:68px; height:68px; border-radius:50%; border:2px solid
     <div>
         <div style="color:#aaa; font-size:14px;">Designed & Developed By</div>
         <div style="font-size:27px; font-weight:700;">Gaurav Suthar</div>
@@ -187,9 +166,6 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# =========================================================
-# METRIC CARDS (Unchanged)
-# =========================================================
 col1, col2, col3 = st.columns(3)
 with col1:
     st.markdown(f'<div class="glass-card"><div style="font-size:15px; opacity:0.7;">Cognitive Drift Score</div><div class="metric-value">{drift_score:.2f}%</div></div>', unsafe_allow_html=True)
@@ -198,9 +174,6 @@ with col2:
 with col3:
     st.markdown(f'<div class="glass-card"><div style="font-size:15px; opacity:0.7;">Behavioral Status</div><div style="font-size:28px; font-weight:700; color:{col}; margin-top:12px;">{classification}</div></div>', unsafe_allow_html=True)
 
-# =========================================================
-# NEURAL INTERCONNECT WEB (Unchanged)
-# =========================================================
 st.markdown('<div style="font-size:38px; font-weight:700; margin:50px 0 25px 0;">Neural Interconnect Web</div>', unsafe_allow_html=True)
 
 labels = ["Latency", "Task Decay", "Focus", "Night", "Goals", "Withdrawal", "Consistency"]
@@ -242,12 +215,8 @@ fig_network.update_layout(
 )
 st.plotly_chart(fig_network, use_container_width=True)
 
-# =========================================================
-# NEW: BEHAVIORAL GENOME RADAR + HUMAN OPERATING SYSTEM SCORE
-# =========================================================
 st.markdown('<div style="font-size:38px; font-weight:700; margin:50px 0 25px 0;">Behavioral Genome Radar</div>', unsafe_allow_html=True)
 
-# Advanced Radar with multiple layers
 radar_fig = go.Figure()
 
 radar_fig.add_trace(go.Scatterpolar(
@@ -275,7 +244,6 @@ radar_fig.update_layout(
 )
 st.plotly_chart(radar_fig, use_container_width=True)
 
-# Human Operating System Score
 hos_score = (100 - drift_score + stability_score) / 2
 st.markdown(f"""
 <div class="glass-card">
@@ -285,7 +253,6 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-# AI Personality Mapping
 st.markdown('<div style="font-size:38px; font-weight:700; margin:50px 0 25px 0;">AI Personality Mapping</div>', unsafe_allow_html=True)
 
 personality = "Hyper-Focused Bursts Performer" if focus_fragmentation < 25 and task_decay < 40 else \
@@ -299,7 +266,6 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-# Human System Load
 load = (sum(values) / len(values)) / 1.2
 st.markdown(f"""
 <div class="glass-card">
@@ -309,9 +275,6 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-# =========================================================
-# PERFORMANCE EKG (Animated Neural Heartbeat)
-# =========================================================
 st.markdown('<div style="font-size:38px; font-weight:700; margin:50px 0 25px 0;">Performance EKG</div>', unsafe_allow_html=True)
 
 ekg_x = list(range(10))
@@ -321,7 +284,6 @@ ekg = go.Figure(go.Scatter(x=ekg_x, y=ekg_y, mode='lines', line=dict(color='#00f
 ekg.update_layout(height=280, paper_bgcolor='rgba(0,0,0,0)', title="Neural Activity Waveform")
 st.plotly_chart(ekg, use_container_width=True)
 
-# Focus Field Visualizer
 st.markdown('<div style="font-size:38px; font-weight:700; margin:50px 0 25px 0;">Focus Field Visualizer</div>', unsafe_allow_html=True)
 
 focus_fig = go.Figure()
@@ -330,15 +292,11 @@ focus_fig.add_trace(go.Scatter(x=[0, focus_fragmentation/50], y=[0, 1 - focus_fr
 focus_fig.update_layout(height=340, paper_bgcolor='rgba(0,0,0,0)', title="Magnetic Focus Field")
 st.plotly_chart(focus_fig, use_container_width=True)
 
-# Neural Overheat Warning
 if drift_score > 65:
     st.error("🔥 NEURAL OVERHEAT WARNING - Cognitive Thermal Throttling Detected")
 else:
     st.success("🟢 Neural Temperature Nominal")
 
-# =========================================================
-# RECOMMENDATIONS (Unchanged + Enhanced)
-# =========================================================
 st.markdown('<div style="font-size:38px; font-weight:700; margin:50px 0 25px 0;">Adaptive Recommendation Engine</div>', unsafe_allow_html=True)
 
 recs = []
@@ -358,9 +316,6 @@ for title, text in recs:
     </div>
     """, unsafe_allow_html=True)
 
-# =========================================================
-# FOOTER
-# =========================================================
 st.markdown("<br><br>", unsafe_allow_html=True)
 st.markdown("""
 <div style="text-align:center; color:rgba(255,255,255,0.5); font-size:14px;">
